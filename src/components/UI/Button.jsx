@@ -5,9 +5,10 @@ const Button = ({
   children,
   variant = "contained",
   borderStyle = "rounded",
+  ...restProps
 }) => {
   return (
-    <StyledButton variant={variant} borderStyle={borderStyle}>
+    <StyledButton variant={variant} borderStyle={borderStyle} {...restProps}>
       {children}
     </StyledButton>
   )

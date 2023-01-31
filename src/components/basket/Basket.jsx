@@ -1,36 +1,29 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
+import { BasketContext } from "../store/BasketContext"
 import Modal from "../UI/Modal"
 import BasketItem from "./BasketItem"
 import TotalAmont from "./TotalAmont"
 
-const Basket = () => {
-  const items = [
-    {
-      id: "1",
-      title: "Sushi",
-      price: 22.99,
-      amount: 1,
-    },
-    {
-      id: "2",
-      title: "Schnitzel",
-      price: 16.0,
-      amount: 1,
-    },
-    {
-      id: "3",
-      title: "Barbecue Burger",
-      price: 12.99,
-      amount: 1,
-    },
-    {
-      id: "4",
-      title: "Green Bowl",
-      price: 19.99,
-      amount: 1,
-    },
-  ]
+const Basket = ({ onClose }) => {
+  const { items, updateBasketItem, deleteBasketItem } =
+    useContext(BasketContext)
+
+  const getTotalPrice = () => {
+    return items.reduce((sum, { price, amount }) => sum + amount * price, 0)
+  }
+
+  const decrementAmount = (id, amount) => {
+    if (amount > 1) {
+      updateBasketItem({ amount: amount - 1, id })
+    } else {
+      deleteBasketItem(id)
+    }
+  }
+  const incrementAmount = (id, amount) => {
+    updateBasketItem({ amount: amount + 1, id })
+  }
+
   return (
     <Modal onClose={() => {}}>
       <Content>
@@ -39,7 +32,9 @@ const Basket = () => {
             {items.map((item) => {
               return (
                 <BasketItem
-                  key={item.id}
+                  key={item._id}
+                  incrementAmount={() => incrementAmount(item._id, item.amount)}
+                  decrementAmount={() => decrementAmount(item._id, item.amount)}
                   title={item.title}
                   price={item.price}
                   amount={item.amount}
@@ -49,7 +44,11 @@ const Basket = () => {
           </FixedHeightContainer>
         ) : null}
 
-        <TotalAmont price={200.3232} onClose={() => {}} onOrder={() => {}} />
+        <TotalAmont
+          price={getTotalPrice()}
+          onClose={onClose}
+          onOrder={() => {}}
+        />
       </Content>
     </Modal>
   )

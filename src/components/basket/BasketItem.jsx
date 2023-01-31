@@ -1,10 +1,15 @@
-import React from "react"
 import styled from "styled-components"
 import Button from "../UI/Button"
 import { ReactComponent as MinusIcon } from "../../assets/icons/minus.svg"
 import { ReactComponent as PlusIcon } from "../../assets/icons/plus.svg"
 
-const BasketItem = ({ title, price, amount }) => {
+const BasketItem = ({
+  title,
+  price,
+  amount,
+  decrementAmount,
+  incrementAmount,
+}) => {
   return (
     <Container>
       <Title>{title}</Title>
@@ -14,10 +19,18 @@ const BasketItem = ({ title, price, amount }) => {
           <Amount>x{amount}</Amount>
         </PriceAndAmountContainer>
         <CounterContainer>
-          <Button borderStyle="sqaured" variant="outlined">
+          <Button
+            borderStyle="sqaured"
+            variant="outlined"
+            onClick={decrementAmount}
+          >
             <MinusIcon />
           </Button>
-          <Button borderStyle="sqaured" variant="outlined">
+          <Button
+            borderStyle="sqaured"
+            variant="outlined"
+            onClick={incrementAmount}
+          >
             <PlusIcon />
           </Button>
         </CounterContainer>

@@ -29,7 +29,6 @@ export default TotalAmont
 
 const Container = styled.div`
   padding-top: 30px;
-  
 `
 
 const Label = styled.p`
@@ -47,7 +46,6 @@ const Price = styled.p`
   line-height: 33px;
   color: #8a2b06;
   margin: 0;
-  
 `
 
 const InfoContainer = styled.div`

@@ -1,17 +1,16 @@
-import React from "react"
 import styled from "styled-components"
 
 import MealItemForm from "./MealItemForm"
 
-const MealItem = ({ meal }) => {
+const MealItem = ({ title, description, price, id }) => {
   return (
     <Container>
       <StyledItemInfo>
-        <StyleTitle>{meal.title}</StyleTitle>
-        <p>{meal.description}</p>
-        <span>${meal.price}</span>
+        <StyleTitle>{title}</StyleTitle>
+        <p>{description}</p>
+        <span>${price}</span>
       </StyledItemInfo>
-      <MealItemForm id={meal.id} />
+      <MealItemForm id={id} price={price} title={title} />
     </Container>
   )
 }

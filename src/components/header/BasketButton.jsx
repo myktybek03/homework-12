@@ -2,9 +2,9 @@ import React from "react"
 import styled from "styled-components"
 import { ReactComponent as BasketIcon } from "../../assets/icons/basket-icon.svg"
 
-const BasketButton = ({ count }) => {
+const BasketButton = ({ count, ...restProps }) => {
   return (
-    <StyledButton>
+    <StyledButton {...restProps}>
       <BasketIcon />
       <StyledTitle>You Cart</StyledTitle>
       <StyledCounter id="counter">{count || 0}</StyledCounter>
@@ -33,6 +33,27 @@ const StyledButton = styled.button`
 
   &:hover > #counter {
     background: #662207;
+  }
+  &.bump {
+    animation: bump 300ms ease-out;
+  }
+
+  @keyframes bump {
+    0% {
+      transform: scale(1);
+    }
+    10% {
+      transform: scale(0.9);
+    }
+    30% {
+      transform: scale(1.1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 `
 

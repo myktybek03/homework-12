@@ -2,7 +2,7 @@
   "name": "order-food",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://myktybek03.github.io/order-food",
+  "homepage": "https://myktybek03.github.io/homework-12",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
